@@ -1,5 +1,6 @@
 import { usersUrl } from './urls.js';
 import { loadJson } from './loadingHelper.js';
+import cachingDecorator from './cachingDecorator.js';
 
 export default class User {
     constructor(id, name) {
@@ -8,7 +9,7 @@ export default class User {
     }
 
     _onUserClicked(event) {
-        getUserInfo(this.id);
+        showUserInfo(this.id);
     }
 
     toHtml() {
@@ -21,7 +22,10 @@ export default class User {
     }
 }
 
-function getUserInfo(id) {
-    loadJson(`${usersUrl}/${id}`)
+
+let cachingUserLoader = cachingDecorator(loadJson, args => args);
+
+function showUserInfo(id) {
+    cachingUserLoader(`${usersUrl}/${id}`)
         .then(data => console.log(data));
 }
