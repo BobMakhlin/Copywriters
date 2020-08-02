@@ -54,6 +54,7 @@ function showUserPosts(event, userId) {
     cachingUserPostsLoader(`${postsUrl}=${userId}`)
         .then(posts => {
             selectedUserPostsBlock.style.display = 'block';
+            selectedUserPosts.innerHTML = '';
 
             for (let postData of posts) {
                 let post = new Post(postData.title, postData.body);
