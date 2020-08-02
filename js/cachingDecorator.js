@@ -10,7 +10,7 @@ function cachingDecorator(func, hashFn) {
 
         let result = func.apply(this, args);
         cache.set(key, result);
-        
+
         return result;
     }
 }
