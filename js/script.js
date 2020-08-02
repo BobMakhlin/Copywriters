@@ -1,6 +1,6 @@
 import { usersUrl } from './urls.js';
 import { loadJson } from './loadingHelper.js';
-import User from './user.js';
+import User from './drawers/user.js';
 
 const copywritersBlock = document.querySelector('.copywriters');
 

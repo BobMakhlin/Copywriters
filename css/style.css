@@ -1,3 +1,7 @@
+:root {
+    --dark-gray: #505050;
+}
+
 body {
     background-color: #fbf2e9;
 }
@@ -13,6 +17,7 @@ body {
 
 #main {
     font-family: 'Raleway', sans-serif;
+    padding-bottom: 2em;
 }
 .main__title {
     font-weight: bold;
@@ -44,3 +49,34 @@ body {
 .copywriters__item:hover {
     font-weight: bold;
 }
+
+/* Selected copywriter */
+
+.selected-copywriter {
+    display: none;
+}
+
+.selected-copywriter__info {
+    width: 100%;
+    font-size: 1.4em;
+}
+.selected-copywriter__info th {
+    width: 25%;
+    text-align: left;
+}
+.selected-copywriter__info td {
+    width: 75%;
+}
+.selected-copywriter__info th, .selected-copywriter__info td {
+    border: 2px solid var(--dark-gray);
+    padding: 17px 24px;
+}
+
+.selected-copywriter__show-posts-button {
+    width: 100%;
+    margin-top: 1.5em;
+    padding: 10px 0;
+    font-size: 1.15em;
+}
+
+/* /Selected copywriter */
