@@ -1,0 +1,46 @@
+body {
+    background-color: #fbf2e9;
+}
+
+.non-selectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#main {
+    font-family: 'Raleway', sans-serif;
+}
+.main__title {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.3em;
+
+    margin-bottom: 1.4em;
+    margin-top: 1em;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.copywriters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.copywriters__item {
+    flex-basis: 28.5%;
+    margin-bottom: 1em;
+    border: 1px solid black;
+    padding: 17px;
+    font-size: 1.4em;
+}
+.copywriters__item:hover {
+    font-weight: bold;
+}
