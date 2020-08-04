@@ -1,4 +1,4 @@
-export default class UserInfoTableModifier {
+class UserInfoTableModifier {
     constructor(name, username, address, email, phone, website) {
         this.name = name;
         this.username = username;

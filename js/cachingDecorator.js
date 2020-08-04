@@ -14,5 +14,3 @@ function cachingDecorator(func, hashFn) {
         return result;
     }
 }
-
-export default cachingDecorator;

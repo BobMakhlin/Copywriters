@@ -1,4 +1,4 @@
-export default class Post {
+class Post {
     constructor(title, body) {
         this.title = title;
         this.body = body;

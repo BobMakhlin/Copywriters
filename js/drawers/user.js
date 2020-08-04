@@ -1,24 +1,14 @@
-import { usersUrl, postsUrl } from '../urls.js';
-import { loadJson } from '../loadingHelper.js';
-import cachingDecorator from '../cachingDecorator.js';
-import UserInfoTableModifier from './user-info.js';
-import Post from './post.js';
-
-export default class User {
+class User {
     constructor(id, name) {
         this.id = id;
         this.name = name;
-    }
-
-    _onUserClicked(event) {
-        showUserInfo(this.id);
     }
 
     toHtml() {
         let copywriterDiv = document.createElement('div');
         copywriterDiv.className = 'copywriters__item';
         copywriterDiv.innerText = this.name;
-        copywriterDiv.addEventListener('click', this._onUserClicked.bind(this));
+        copywriterDiv.addEventListener('click', () => showUserInfo(this.id));
 
         return copywriterDiv;
     }
@@ -45,12 +35,12 @@ function showUserInfo(userId) {
             );
             tableModifier.applyFor(selectedUserInfoTable);
 
-            showPostsButton.onclick = event => showUserPosts(event, userId);
+            showPostsButton.onclick = () => showUserPosts(userId);
         })
         .catch(err => console.log(err));
 }
 
-function showUserPosts(event, userId) {
+function showUserPosts(userId) {
     cachingUserPostsLoader(`${postsUrl}=${userId}`)
         .then(posts => {
             selectedUserPostsBlock.style.display = 'block';
