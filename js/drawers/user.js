@@ -4,7 +4,7 @@ class User {
         this.name = name;
     }
 
-    toHtml() {
+    toHtmlNode() {
         let copywriterDiv = document.createElement('div');
         copywriterDiv.className = 'copywriters__item';
         copywriterDiv.innerText = this.name;
@@ -51,6 +51,6 @@ async function showUserPosts(userId) {
 
     for (let postData of posts) {
         let post = new Post(postData.title, postData.body);
-        selectedUserPosts.append(post.toHtml());
+        selectedUserPosts.append(post.toHtmlNode());
     }
 }

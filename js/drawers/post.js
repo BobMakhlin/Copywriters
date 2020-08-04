@@ -4,19 +4,15 @@ class Post {
         this.body = body;
     }
 
-    toHtml() {
-        let post = document.createElement('div');
-        post.className = 'copywriter-post';
+    toHtmlNode() {
+        let copywriterPost = document.createElement('div');
+        copywriterPost.className = 'copywriter-post';
 
-        let title = document.createElement('p');
-        title.className = 'copywriter-post__title';
-        title.innerText = this.title;
+        copywriterPost.innerHTML = `
+            <p class="copywriter-post__title">${this.title}</p>
+            <p class="copywriter-post__body">${this.body}</p>
+        `;
 
-        let body = document.createElement('p');
-        body.className = 'copywriter-post__body';
-        body.innerText = this.body;
-
-        post.append(title, body);
-        return post;
+        return copywriterPost;
     }
 }
