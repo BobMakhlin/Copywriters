@@ -4,7 +4,7 @@ class User {
         this.name = name;
     }
 
-    toHtml() {
+    toHtmlNode() {
         let copywriterDiv = document.createElement('div');
         copywriterDiv.className = 'copywriters__item';
         copywriterDiv.innerText = this.name;
@@ -24,33 +24,33 @@ const cachingUserLoader = cachingDecorator(loadJson, args => args);
 const cachingUserPostsLoader = cachingDecorator(loadJson, args => args);
 
 
-function showUserInfo(userId) {
-    cachingUserLoader(`${usersUrl}/${userId}`)
-        .then(data => {
-            selectedUser.style.display = 'block';
-            selectedUserPostsBlock.style.display = 'none';
+async function showUserInfo(userId) {
+    let userData = await cachingUserLoader(`${usersUrl}/${userId}`);
 
-            let tableModifier = new UserInfoTableModifier(
-                data.name, data.username, data.address, data.email, data.phone, data.website
-            );
-            tableModifier.applyFor(selectedUserInfoTable);
+    selectedUser.style.display = 'block';
+    selectedUserPostsBlock.style.display = 'none';
 
-            showPostsButton.onclick = () => showUserPosts(userId);
-        })
-        .catch(err => console.log(err));
+    let tableModifier = new UserInfoTableModifier(
+        userData.name, 
+        userData.username, 
+        userData.address, 
+        userData.email, 
+        userData.phone, 
+        userData.website
+    );
+    tableModifier.applyFor(selectedUserInfoTable);
+
+    showPostsButton.onclick = () => showUserPosts(userId);
 }
 
-function showUserPosts(userId) {
-    cachingUserPostsLoader(`${postsUrl}=${userId}`)
-        .then(posts => {
-            selectedUserPostsBlock.style.display = 'block';
-            selectedUserPosts.innerHTML = '';
+async function showUserPosts(userId) {
+    let posts = await cachingUserPostsLoader(`${postsUrl}=${userId}`);
 
-            for (let postData of posts) {
-                let post = new Post(postData.title, postData.body);
-                let postDiv = post.toHtml();
-                selectedUserPosts.append(postDiv);
-            }
-        })
-        .catch(err => console.log(err));
+    selectedUserPostsBlock.style.display = 'block';
+    selectedUserPosts.innerHTML = '';
+
+    for (let postData of posts) {
+        let post = new Post(postData.title, postData.body);
+        selectedUserPosts.append(post.toHtmlNode());
+    }
 }
