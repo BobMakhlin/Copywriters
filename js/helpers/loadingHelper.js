@@ -1,4 +1,4 @@
-class HttpError extends Error {
+export class HttpError extends Error {
     constructor(response) {
         super(`Status ${response.status} for ${response.url}`);
         this.name = 'HttpError';
@@ -6,7 +6,7 @@ class HttpError extends Error {
     }
 }
 
-async function loadJson(url) {
+export async function loadJson(url) {
     let response = await fetch(url);
 
     if (!response.ok) {
